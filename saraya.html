@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ps">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پښتو ویب پاڼه</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+        }
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #007bff;
+            color: white;
+            text-align: center;
+        }
+        .cover-page button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            background: white;
+            color: #007bff;
+            border: none;
+            cursor: pointer;
+        }
+        .content-page {
+            display: none;
+            padding: 20px;
+        }
+        .content-page div {
+            margin: 10px 0;
+            padding: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .content-page button {
+            display: block;
+            margin: 10px auto 0;
+            padding: 5px 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: white;
+            margin-top: 20px;
+            color:black;
+        }
+        .text-block {
+            white-space: pre-wrap;
+            text-align: center;
+            background: #f1f1f1;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .text-block div {
+            margin-bottom: 5px;
+        }
+        .copy-btn {
+            display: block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="cover-page" id="coverPage">
+        <h1>ثریا 'ځاځی' ادبی ټولګی ته ښه راغلاست!</h1>
+        <button onclick="goToContentPage()">شعرونه وګورئ!</button>
+    </div>
+
+    <!-- Content Page -->
+    <div class="content-page" id="contentPage">
+        <div id="divContainer">
+            <!-- Dynamic text added below -->
+        </div>
+        <div class="buttons">
+            <button onclick="goToTop()">پورته لاړ شئ</button>
+            <button onclick="goToCoverPage()">کور پاڼې ته لاړ شئ</button>
+        </div>
+        <div class="footer">
+            © 2024 - ثریا 'ځاځی' د پښتو شعرونو ادبی ټولګه
+        </div>
+    </div>
+
+    <script>
+        // کور پاڼې ته لاړ شئ
+        function goToCoverPage() {
+            document.getElementById("contentPage").style.display = "none";
+            document.getElementById("coverPage").style.display = "flex";
+        }
+
+        // محتوا ته لاړ شئ
+        function goToContentPage() {
+            document.getElementById("coverPage").style.display = "none";
+            document.getElementById("contentPage").style.display = "block";
+            displayTextContent();
+        }
+
+        // پورته لاړ شئ
+        function goToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        // Copy text to clipboard
+        function copyToClipboard(text) {
+            const additionalText = ' ثریا "ځاځی" ادبی ډولګه';
+            const fullText = text + additionalText;
+
+            navigator.clipboard.writeText(fullText).then(() => {
+                alert('شعر کاپي شو!');
+            });
+        }
+
+        // Display all text content with line breaks and copy buttons
+        function displayTextContent() {
+            const texts = [
+                "نری نری لوګی ترې خيږي\nد چا په نوې يارۍ اور ولګېدنه",
+                "نړۍ مريح ته رسيدلې\nموږلاتراوسه وړوپه خروباندې بارونه",
+                "نښې دې ډېرې ما سره دي\nنښې دې څه کړم چې دې سترګې نه وينمه",
+                "نصيب مې خپل دی رارسيږي\nمورې زما په نصيب مه کوه جنګونه",
+                "نصيبه وسوزې ايره شي\nتنديه مات شې تاکې څه ليکلي دينه",
+                "نن خو مې ډير ياديږې ياره\nخدای دې ناڅاپه چيرته راوله مينه",
+                "نن د ګودر په لاره مه ځه\nليلا ولاړه ده په زړه ويشتل کوينه",
+                "نن مې د قبر خواله راشه\nمبارکي د نوي کور راکړه مينه",
+                "نه به انځر د ورځې ګل شي\nنه به زما زړگی د غمه خالي شينه",
+                "نه دې د ځان نه دې د بل کړم\nد دادا کور کې دې زړه کړمه ظالمه",
+                "وايم چې داسې ځای ته لاړ وای\nچې ستا دې ډېرو ناکردو ته وګورمه",
+                "وخت د ځوانې مې نيمه خوا شو\nيار بې وفا شو ارمانې به ګودر له ځمه",
+                "ودرېدی نشمه غورزيږم\nتاو کړي غشي مې د غم خوړلي دينه",
+                "ودې ويشتم پورته دې نه کړم\nخلک ويشتلی مرغۍ ژر پورته کوينه",
+                "ورشه د يار خبر دې واخله\nچې بې ديدنه دې ساته لېونه شونه",
+                "ورکه د کور کلي ياري شه\nد زنې سر مې دېوالو وسولاونه",
+                "وطن به ستا لپاره پرېږدم\nچې ستا د حسن دوران تېر شي رابه شمه",
+                "وطن د مور او پلاره خوږ دی\nجانانه درې واړه پرېږدم تا سره ځمه",
+                "وطن مې تن ،تن مې وطن دي\nدتن په وينويې ساتم ترڅوچې يمه",
+                "وطن مې ستا له غمه پرېښود\nخلکو ته وايم چې نيسۍ اخيستی يمه",
+                "ولاړه اوسه چې دې وينمه\nچا دې صفت راته کوو راغلی يمه",
+                "ولې دې سر په زنګنو کړ\nما په ځوانانو کې خوښ کړې يې مينه",
+                "ولې دې مخ زما نه پټ کړ\nاشنا غماز درته دروغ ويلي دينه",
+                "ولی به زه ور پسی نه مرم\nاوږی په غاړه ما زد يګر ګودر له ځينه",
+                "هر کله راشې د يار غمه\nکه سل مې نور وي تا به پاس په تندي وړمه",
+                "هر مازد يګردی لوی اختر دی\nګودره ! ځکه دی صفت هر ځای کو مه",
+                "هغه دې هېر دي که دې ياد دي\nچې د کړکۍ شمال په دواړو لګېدنه",
+                "هغه ساعت به کله راشی\nچې د اشنا سره به بر ګودر له ځمه",
+                "يا خو زما په زړه تياره ده\nيا خو په ټوله دونيا پرېوتل ګردونه",
+                "يا خو زما نصيب خراب دی\nيا خو به ټولې يارانې دغسې وينه",
+                "يار مې په اوم کې زه اتم کې\nيو کال به پاتې شم چې دواړه يو ځای شونه",
+                "يار مې په شنو سترګو مين دی\nزه به دا تورې سترګې چېرته بدلومه",
+                "يار مې هندو زه مسلمان يم\nد يار لپاره درمسال جارو کومه",
+                "ياره زموږكلي ته راشه\nيوڅه په جيب كې ستالپاره ګرځومه",
+                "ياري په تور او په سپين نه ده\nدا معشوقې خو غنمرنګې خوند کوينه",
+                "ياري په تور او په سپين نه ده\nزړه چې مين شي تور او سپين نه پېژنينه",
+                "ياري خو تا پرې کړه کمبخته\nکه ما پرې کړې وای ژړلي به دې وونه",
+                "ياري خو تا کړه ما خو نکړه\nاوس يې چې لنډه پرې کوې ژړا راځينه",
+                "ياري د دنګې نجلۍ خوند کړي\nد پلو لاندې سړی غلی تېروينه",
+                "ياري د زور خبره نه ده\nکه زړه دې نه وي بيا دې نه مجبورومه",
+                "ياري د شنې لښتې ګوزار دی\nچې چا خوړلی رنګ يې ځای ته نه راځينه",
+                "ياري دې ټوله د ټګۍ وه\nښه شو چې زر دې په مطلب ورسېدمه",
+                "ياري دې نه کوم ډاريږم\nد لرې لرې نندراې به دې کومه",
+                "ياري دې نه وه خوب ليدل و\nڅو چې مې سترګې غړولې سبا شونه",
+                "زما د يار وربل يې وران که\nسيلۍ په لاره د ړندو په شانتې ځينه",
+                "ليلی زړه شوه سور يې کم شو\nله منګو پرېوته کوزې را"
+            ];
+
+            const container = document.getElementById("divContainer");
+
+            texts.forEach(text => {
+                const div = document.createElement("div");
+                div.classList.add("text-block");
+                div.innerHTML = text;
+                const copyButton = document.createElement("button");
+                copyButton.classList.add("copy-btn");
+                copyButton.innerHTML = "کاپي کړئ";
+                copyButton.onclick = () => copyToClipboard(text);
+                div.appendChild(copyButton);
+                container.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>
